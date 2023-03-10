@@ -12,7 +12,7 @@
       <th>終了日</th>
       <th>終日</th>
       <th>更新日時</th>
-      <th>作成日</th>
+      <th>作成日時</th>
       <th>参照</th>
       <th>編集</th>
       <th>削除</th>
@@ -24,9 +24,16 @@
       <tr>
         <td><%= user.id %></td>
         <td><%= user.title %></td>
-        <td><%= user.start %></td>
-        <td><%= user.end %></td>
-        <td><%= user.introduction %></td>
+        <td><%= user.start.strftime("%Y年%m月%d日") %></td>
+        <td><%= user.finish.strftime("%Y年%m月%d日") %></td>
+        <td>
+        <% if user.allday == true %>
+        <%= "○" %>
+        <% else user.allday == false %>
+
+        <% end %>
+       
+       
         <td><%= user.updated_at.to_s(:datetime_jp) %></td>
         <td><%= user.created_at.to_s(:datetime_jp) %></td>
         <td>
@@ -45,3 +52,8 @@
 </table>
 
 <p><%= link_to "ユーザー新規登録", :new_user %></p>
+<h6 class="count">スケジュール合計:<%= @users.count %></h6>
+
+<a><%= "本日の日付：#{Date.today.strftime("%Y/%m/%d")}" %></a>
+
+
